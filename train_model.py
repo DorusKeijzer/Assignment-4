@@ -7,14 +7,19 @@ import torch.nn.functional as F
 import torch.optim as optim
 import importlib.util
 from datetime import datetime
+from utils import load_model, evaluate_model
+from configs import BATCH_SIZE
+
+from matplotlib import pyplot as plt
 
 
-def train(net: nn.Module, trainloader, criterion, optimizer: torch.optim.Adam, decrease_learning_rate = False):
+def train(net: nn.Module, train_loader, val_loader, criterion, optimizer: torch.optim.Adam, decrease_learning_rate = False):
     print("Starting training...")
     training_loss = []
     eval_loss = []
-    for epoch in range(15):
-        print(f"Epoch: {epoch}")
+    for epoch in range(3):
+        print(f"Epoch {epoch+1}")
+        print("=====================================")
         # if deacrease_learning_rate is set to True:
         if decrease_learning_rate and epoch > 0 and epoch % 5 == 0:
             # halves learning rate every 5th epoch for choice task #1
@@ -24,35 +29,44 @@ def train(net: nn.Module, trainloader, criterion, optimizer: torch.optim.Adam, d
                 param_group['lr'] = lr 
             print(f"Halved learning rate to {lr}")
 
-        running_loss = 0.0
-        for i, data in enumerate(trainloader, 0):
-            inputs, labels = data
-
+        train_loss = 0.0
+        for i, (inputs, labels) in enumerate(train_loader):
             optimizer.zero_grad()
-
-            outputs = net(inputs)
+            outputs = model(inputs)
             loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
+            train_loss += loss.item() * inputs.size(0)
 
-            running_loss += loss.item()
-            if i % 2000 == 1999:    # print every 2000 mini-batches
-                print('[%d, %5d] loss: %.3f' %
-                    (epoch + 1, i + 1, running_loss / 2000))
-                running_loss = 0.0
-        training_loss.append(running_loss)
+            if i % 100 == 0 or i == len(train_loader):  # Print when a batch is completed or it's the last batch
+                avg_train_loss = train_loss / ((i + 1) * BATCH_SIZE)
+                print(f"Batch: {i:>3}/{len(train_loader)}, training loss: {avg_train_loss:.4f}")
 
-    print('Finished Training')
+        training_loss.append(avg_train_loss)
+        val_loss, val_accuracy = evaluate_model(model, criterion, val_loader)
+        eval_loss.append(val_loss)
+        print("—————————————————————————————————————")
+        print(f'Validation Loss: {val_loss:>20.4f}\nValidation Accuracy: {val_accuracy:>16.4f}')      
+    print('Finished Training\n')
     return eval_loss, training_loss 
 
-def load_model(model_filename):
-    model_path = f'model_architectures.{model_filename}'
-    spec = importlib.util.find_spec(model_path)
-    if spec is None:
-        raise ImportError(f"Model '{model_filename}' not found")
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
+
+def plotLosses(eval_loss, train_loss, filename):
+    plt.plot(eval_loss, label='Evaluation loss')
+    plt.plot(train_loss, label='Training loss')
+
+    # Adding labels and title
+    plt.xlabel('Epoch')
+    plt.ylabel('Loss')
+    plt.title('Loss over time')
+
+    # Adding legend
+    plt.legend()
+    plt.savefig("results/"+ filename + '.png')
+
+    # Displaying the plot
+    plt.show()
+
 
 if __name__  == "__main__":
     if len(argv) != 2:
@@ -67,12 +81,15 @@ if __name__  == "__main__":
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr= 0.001)
     
-    from load_dataset import trainloader as trainloader
+    from load_dataset import train_loader, val_loader 
 
-    train(model, trainloader, criterion, optimizer)
+    eval_loss, training_loss = train(model, train_loader, val_loader, criterion, optimizer)
+
 
     now = datetime.now().strftime(r'%y%m%d_%H%M%S')
     store_filepath = f"trained_models/{model.name}_{now}.pth"
+
+    plotLosses(eval_loss, training_loss, f"{model.name}_{now}")
 
     torch.save(model.state_dict(), store_filepath)
     print(f"Saved model to {store_filepath}")
