@@ -10,9 +10,11 @@ from datetime import datetime
 
 
 def train(net: nn.Module, trainloader, criterion, optimizer: torch.optim.Adam, decrease_learning_rate = False):
+    print("Starting training...")
     training_loss = []
     eval_loss = []
     for epoch in range(15):
+        print(f"Epoch: {epoch}")
         # if deacrease_learning_rate is set to True:
         if decrease_learning_rate and epoch > 0 and epoch % 5 == 0:
             # halves learning rate every 5th epoch for choice task #1
@@ -41,6 +43,7 @@ def train(net: nn.Module, trainloader, criterion, optimizer: torch.optim.Adam, d
         training_loss.append(running_loss)
 
     print('Finished Training')
+    return eval_loss, training_loss 
 
 def load_model(model_filename):
     model_path = f'model_architectures.{model_filename}'

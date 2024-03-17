@@ -13,7 +13,7 @@ def load_model(model_filename):
     return module
 
 
-def accuracy(model)
+def accuracy(model):s
     # Test the LeNet model
     correct = 0
     total = 0
