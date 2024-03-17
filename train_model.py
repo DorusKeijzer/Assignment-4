@@ -17,7 +17,7 @@ def train(net: nn.Module, train_loader, val_loader, criterion, optimizer: torch.
     print("Starting training...")
     training_loss = []
     eval_loss = []
-    for epoch in range(3):
+    for epoch in range(15):
         print(f"Epoch {epoch+1}")
         print("=====================================")
         # if deacrease_learning_rate is set to True:
