@@ -71,7 +71,7 @@ def train(net: nn.Module, train_loader, val_loader, criterion, optimizer: torch.
     return eval_loss, training_loss, val_loss, val_accuracy 
 
 
-def plotLosses(eval_loss, train_loss, val_accuracy, final_val_loss, filename, show=False):
+def plotLosses(eval_loss, train_loss, final_val_loss, val_accuracy, filename, show=False):
     plt.plot(eval_loss, label='Evaluation loss', color='black', linestyle='--')
     plt.plot(train_loss, label='Training loss', color='black', linestyle=':')
     plt.plot([], [], ' ', label=f"Final validation loss {final_val_loss:.3f}")
