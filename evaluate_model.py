@@ -12,5 +12,5 @@ if __name__ == "__main__":
     model = load_model(argv[1])
     model_path = argv[2]
     model = model.load_state_dict(torch.load(model_path))
-    
+
     evaluate_model(model, )

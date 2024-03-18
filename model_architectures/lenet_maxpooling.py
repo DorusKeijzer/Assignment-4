@@ -1,3 +1,5 @@
+#original LENET 5 model modified to use max pooling
+
 import torch
 import torchvision
 import torchvision.transforms as transforms
@@ -6,7 +8,7 @@ import torch.nn.functional as F
 import torch.nn.init as init
 
 class model(nn.Module):
-    name = "lenet" #change to reflect model version
+    name = "LENET maxpooling" #change to reflect model version
     def __init__(self, num_classes):
         super(model, self).__init__()
         self.layer1 = nn.Sequential(

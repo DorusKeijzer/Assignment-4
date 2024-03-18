@@ -9,12 +9,19 @@ from time import process_time
 batch_size = 64
 num_classes = 10
 learning_rate = 0.001
-num_epochs = 10
+num_epochs = 3
 
 # Device will determine whether to run the training on GPU or CPU.
-#device = torch.device('mps' if torch.backends.mps.is_available() else 'cpu')
+device = (
+    "cuda"
+    if torch.cuda.is_available()
+    else "mps"
+    if torch.backends.mps.is_available()
+    else "cpu"
+)
+print(f"Using {device} device")
 
-device = 'cpu' #uncomment if using CPU for ML
+#device = 'cpu' #uncomment if using CPU for ML
 #device = 'mps' #uncomment if using metal GPU acceleration
 
 #Loading the dataset and preprocessing
@@ -111,7 +118,7 @@ for epoch in range(num_epochs):
         		           .format(epoch+1, num_epochs, i+1, total_step, loss.item()))
 
 t1 = process_time()
-print(f"Total time with cpu: {t1-t0}")
+print(f"Total time: {t1-t0}")
 
 
 # Test the model
