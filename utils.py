@@ -18,8 +18,14 @@ def evaluate_model(model, criterion, data_loader):
     with torch.no_grad():
         for inputs, labels in data_loader:
             outputs = model(inputs)
-            loss += criterion(outputs, labels).item() * inputs.size(0)
-            _, predicted = torch.max(outputs, 1)
+            if model.intermediate_layers: # in case of multiple layers, average the loss over each layer
+                for output in outputs:
+                    loss += criterion(output, labels).item() * inputs.size(0)/len(outputs)
+                # only the final output is used for prediction
+                _, predicted = torch.max(outputs[0], 1)
+            else:
+                loss += criterion(outputs, labels).item() * inputs.size(0)
+                _, predicted = torch.max(outputs, 1)
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
 
