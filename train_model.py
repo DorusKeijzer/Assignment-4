@@ -63,8 +63,8 @@ def train(net: nn.Module, train_loader, val_loader, criterion, optimizer: torch.
 def plotLosses(eval_loss, train_loss, val_accuracy, final_val_loss, filename, show=False):
     plt.plot(eval_loss, label='Evaluation loss', color='black', linestyle='--')
     plt.plot(train_loss, label='Training loss', color='black', linestyle=':')
-    plt.plot([], [], ' ', label=f"Final validation loss {final_val_loss:.2f}")
-    plt.plot([], [], ' ', label=f"Final validation accuracy {val_accuracy:.2f}")
+    plt.plot([], [], ' ', label=f"Final validation loss {final_val_loss:.3f}")
+    plt.plot([], [], ' ', label=f"Final validation accuracy {val_accuracy:.3f}")
 
     # Adding labels and title
     plt.xlabel('Epoch')
