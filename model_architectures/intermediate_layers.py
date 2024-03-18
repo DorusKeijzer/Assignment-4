@@ -8,6 +8,8 @@ import torch.nn.functional as F
 
 class model(nn.Module):
     name = "intermediate_layers"
+    intermediate_layers = True
+
     def __init__(self):
         super(model, self).__init__()
         self.conv1 = nn.Conv2d(1, 6, kernel_size=5)
@@ -18,24 +20,25 @@ class model(nn.Module):
 
         # Intermediate output layers
         self.output1 = nn.Sequential(
-            nn.Conv2d(6, 6, kernel_size=3, padding=1),
-            nn.ReLU(),
-            nn.MaxPool2d(2)
+            nn.Flatten(),
+            nn.Linear(864,432),
+            nn.Linear(432,10)
+
         )
 
         self.output2 = nn.Sequential(
-            nn.Conv2d(16, 16, kernel_size=3, padding=1),
-            nn.ReLU(),
-            nn.MaxPool2d(2)
+            nn.Flatten(),
+            nn.Linear(256,128),
+            nn.Linear(128,10)
         )
 
     def forward(self, x):
         x = F.relu(self.conv1(x))
+        x = F.max_pool2d(x, 2)
         output_1 = self.output1(x)  # Output after the first convolutional layer
-        x = F.max_pool2d(x, 2)
         x = F.relu(self.conv2(x))
-        output_2 = self.output2(x)  # Output after the second convolutional layer
         x = F.max_pool2d(x, 2)
+        output_2 = self.output2(x)  # Output after the second convolutional layer
         x = x.view(-1, 16 * 4 * 4)
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))

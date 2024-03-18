@@ -9,6 +9,7 @@ import torch.nn.init as init
 
 class model(nn.Module):
     name = "LENET Original" #change to reflect the model version
+    intermediate_layers = False
     def __init__(self, num_classes):
         super(model, self).__init__()
         self.layer1 = nn.Sequential(

@@ -54,7 +54,6 @@ def train(net: nn.Module, train_loader, val_loader, criterion, optimizer: torch.
                     loss += criterion(output, labels)/len(outputs)
             else:
                 loss = criterion(outputs, labels)
-            loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
             train_loss += loss.item() * inputs.size(0)

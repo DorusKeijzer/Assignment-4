@@ -21,7 +21,7 @@ def evaluate_model(model, criterion, data_loader):
             if model.intermediate_layers: # in case of multiple layers, average the loss over each layer
                 for output in outputs:
                     loss += criterion(output, labels).item() * inputs.size(0)/len(outputs)
-                # only the final output is used for prediction
+                # only the final output is used for prediction accuracy
                 _, predicted = torch.max(outputs[0], 1)
             else:
                 loss += criterion(outputs, labels).item() * inputs.size(0)
