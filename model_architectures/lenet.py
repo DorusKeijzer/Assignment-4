@@ -6,6 +6,7 @@ import torch.nn.functional as F
 
 class model(nn.Module):
     name = "lenet"
+    intermediate_layers = False
     def __init__(self):
         super(model, self).__init__()
         self.conv1 = nn.Conv2d(1, 6, kernel_size=5)
