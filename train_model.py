@@ -9,15 +9,24 @@ import importlib.util
 from datetime import datetime
 from utils import load_model, evaluate_model
 from configs import BATCH_SIZE
+import torch.nn.init as init
 
 from matplotlib import pyplot as plt
 
+# Device will determine whether to run the training on GPU or CPU.
+device = (
+    "cuda"
+    if torch.cuda.is_available()
+    else "mps"
+    if torch.backends.mps.is_available()
+    else "cpu"
+)
+print(f"Using {device} device")
 
 def train(net: nn.Module, train_loader, val_loader, criterion, optimizer: torch.optim.Adam, decrease_learning_rate = False):
     print("Starting training...")
     training_loss = []
     eval_loss = []
-    val_loss, val_accuracy = 0,0
     for epoch in range(15):
         print(f"Epoch {epoch+1}")
         print("=====================================")
@@ -33,16 +42,8 @@ def train(net: nn.Module, train_loader, val_loader, criterion, optimizer: torch.
         train_loss = 0.0
         for i, (inputs, labels) in enumerate(train_loader):
             optimizer.zero_grad()
-
-            # if the model implements intermediate layers, this will average the loss of each layer
-            # if the model has only one layer, it works as normal
             outputs = model(inputs)
-            if model.intermediate_layers:
-                loss = 0
-                for output in outputs:
-                    loss += criterion(output, labels)/len(outputs)
-            else:
-                loss = criterion(outputs, labels)
+            loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
             train_loss += loss.item() * inputs.size(0)
@@ -57,7 +58,7 @@ def train(net: nn.Module, train_loader, val_loader, criterion, optimizer: torch.
         print("—————————————————————————————————————")
         print(f'Validation Loss: {val_loss:>20.4f}\nValidation Accuracy: {val_accuracy:>16.4f}')      
     print('Finished Training\n')
-    return eval_loss, training_loss, val_loss, val_accuracy 
+    return eval_loss, training_loss 
 
 
 def plotLosses(eval_loss, train_loss, val_accuracy, final_val_loss, filename, show=False):
@@ -69,15 +70,14 @@ def plotLosses(eval_loss, train_loss, val_accuracy, final_val_loss, filename, sh
     # Adding labels and title
     plt.xlabel('Epoch')
     plt.ylabel('Loss')
-    plt.title(f'Loss over time | {filename}')
+    plt.title('Loss over time')
 
     # Adding legend
     plt.legend()
     plt.savefig("results/"+ filename + '.png')
-    print(f"Saved plot to results/{filename}.png")
+
     # Displaying the plot
-    if show:
-        plt.show()
+    plt.show()
 
 
 if __name__  == "__main__":
@@ -87,21 +87,28 @@ if __name__  == "__main__":
     model_filename = argv[1]
     print(f"Loading {model_filename}...")
     model_module = load_model(model_filename)
-    model = model_module.model()  
+    model = model_module.model(num_classes=10).to(device)
     print(f"Succesfully loaded model {model.name} from {model_filename}")
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr= 0.001)
+
+    # Initialize the weights using Kaiming uniform initialization
+    init.kaiming_uniform_(model.layer1[0].weight)
+    init.kaiming_uniform_(model.layer2[0].weight)
+    init.kaiming_uniform_(model.fc.weight)
+    init.kaiming_uniform_(model.fc1.weight)
+    init.kaiming_uniform_(model.fc2.weight)
     
     from load_dataset import train_loader, val_loader 
 
-    eval_loss, training_loss, val_accuracy, final_val_loss = train(model, train_loader, val_loader, criterion, optimizer)
+    eval_loss, training_loss = train(model, train_loader, val_loader, criterion, optimizer)
 
 
     now = datetime.now().strftime(r'%y%m%d_%H%M%S')
     store_filepath = f"trained_models/{model.name}_{now}.pth"
 
-    plotLosses(eval_loss, training_loss, val_accuracy, final_val_loss, f"{model.name}_{now}")
+    plotLosses(eval_loss, training_loss, f"{model.name}_{now}")
 
     torch.save(model.state_dict(), store_filepath)
     print(f"Saved model to {store_filepath}")

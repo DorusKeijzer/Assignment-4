@@ -12,6 +12,17 @@ transform = transforms.Compose([
     transforms.Normalize((0.5,), (0.5,))
 ])
 
+# Define transformations for choice task
+rotation_angle = 15  # adjust the angle as needed
+crop_size = 28  # adjust the size as needed
+transformchoice = transforms.Compose([
+    transforms.RandomHorizontalFlip(),
+    transforms.RandomRotation(degrees=rotation_angle),
+    transforms.RandomCrop(size=(crop_size, crop_size)),
+    transforms.ToTensor(),
+    transforms.Normalize((0.5,), (0.5,))
+])
+
 # Load Fashion MNIST dataset
 train_dataset = datasets.FashionMNIST(root='./data', train=True, download=True, transform=transform)
 test_dataset = datasets.FashionMNIST(root='./data', train=False, download=True, transform=transform)
@@ -21,7 +32,7 @@ test_size = int(VALSPLIT * len(test_dataset))
 val_size = len(test_dataset) - test_size
 
 # Split train dataset into train and validation sets
-test_dataset, val_dataset = random_split(test_dataset, [test_size, val_size])
+train_dataset, val_dataset = random_split(train_dataset, [train_size, val_size])
 
 # Create data loaders
 train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
