@@ -17,11 +17,11 @@ train_dataset = datasets.FashionMNIST(root='./data', train=True, download=True, 
 test_dataset = datasets.FashionMNIST(root='./data', train=False, download=True, transform=transform)
 
 # Define sizes for train, validation, and test sets
-train_size = int(VALSPLIT * len(train_dataset))
-val_size = len(train_dataset) - train_size
+test_size = int(VALSPLIT * len(train_dataset))
+val_size = len(train_dataset) - test_size
 
 # Split train dataset into train and validation sets
-train_dataset, val_dataset = random_split(train_dataset, [train_size, val_size])
+test_dataset, val_dataset = random_split(test_dataset, [test_size, val_size])
 
 # Create data loaders
 train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
