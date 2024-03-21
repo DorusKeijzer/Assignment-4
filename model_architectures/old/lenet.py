@@ -1,4 +1,4 @@
-#original LENET 5 model
+#Original LENET 5 model
 
 import torch
 import torchvision
@@ -8,19 +8,19 @@ import torch.nn.functional as F
 import torch.nn.init as init
 
 class model(nn.Module):
-    name = "LENET original" #change to reflect model version
+    name = "LENET Original" #change to reflect the model version
     intermediate_layers = False
     def __init__(self, num_classes):
         super(model, self).__init__()
         self.layer1 = nn.Sequential(
             nn.Conv2d(1, 6, kernel_size=5, stride=1, padding=2),  # modified padding
             nn.BatchNorm2d(6),
-            nn.Sigmoid(),
+            nn.ReLU(),
             nn.AvgPool2d(kernel_size=2, stride=2))
         self.layer2 = nn.Sequential(
             nn.Conv2d(6, 16, kernel_size=5, stride=1, padding=0),
             nn.BatchNorm2d(16),
-            nn.Sigmoid(),
+            nn.ReLU(),
             nn.AvgPool2d(kernel_size=2, stride=2))
         self.fc = nn.Linear(16 * 5 * 5, 120)
         self.relu = nn.ReLU()

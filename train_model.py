@@ -10,20 +10,23 @@ from datetime import datetime
 from utils import load_model, evaluate_model
 from configs import BATCH_SIZE
 import torch.nn.init as init
+from time import process_time
 
 from matplotlib import pyplot as plt
 
-# Device will determine whether to run the training on GPU or CPU.
-device = (
-    "cuda"
-    if torch.cuda.is_available()
-    else "mps"
-    if torch.backends.mps.is_available()
-    else "cpu"
-)
-print(f"Using {device} device")
+# # Device will determine whether to run the training on GPU or CPU.
+# device = (
+#     "cuda"
+#     if torch.cuda.is_available()
+#     else "mps"
+#     if torch.backends.mps.is_available()
+#     else "cpu"
+# )
+# print(f"Using {device} device")
 
-def train(net: nn.Module, train_loader, val_loader, criterion, optimizer: torch.optim.Adam, decrease_learning_rate = False):
+device = "cpu"
+
+def train(net: nn.Module, train_loader, val_loader, criterion, optimizer: torch.optim.Adam, decrease_learning_rate = False):            #change last option to 'true' to implement decreasing learning rate for choice task 1
     print("Starting training...")
     training_loss = []
     eval_loss = []
@@ -66,8 +69,9 @@ def train(net: nn.Module, train_loader, val_loader, criterion, optimizer: torch.
         val_loss, val_accuracy = evaluate_model(model, criterion, val_loader)
         eval_loss.append(val_loss)
         print("—————————————————————————————————————")
-        print(f'Validation Loss: {val_loss:>20.4f}\nValidation Accuracy: {val_accuracy:>16.4f}')      
-    print('Finished Training\n')
+        print(f'Validation Loss: {val_loss:>20.4f}\nValidation Accuracy: {val_accuracy:>16.4f}\n')
+    t1 = process_time()    
+    print(f'Finished Training in {round((t1-t0), 1)} seconds')
     return eval_loss, training_loss, val_loss, val_accuracy 
 
 
@@ -91,6 +95,7 @@ def plotLosses(eval_loss, train_loss, final_val_loss, val_accuracy, filename, sh
     if show:
         plt.show()
 
+t0 = process_time()
 
 if __name__  == "__main__":
     if len(argv) != 2:
@@ -108,7 +113,6 @@ if __name__  == "__main__":
     from load_dataset import train_loader, val_loader 
 
     eval_loss, training_loss, val_accuracy, final_val_loss = train(model, train_loader, val_loader, criterion, optimizer)
-
 
     now = datetime.now().strftime(r'%y%m%d_%H%M%S')
     store_filepath = f"trained_models/{model.name}_{now}.pth"
