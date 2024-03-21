@@ -33,11 +33,11 @@ class model(nn.Module):
         )
 
     def forward(self, x):
-        x = F.relu(self.conv1(x))
-        x = F.max_pool2d(x, 2)
+        x = F.sigmoid(self.conv1(x))
+        x = F.avg_pool2d(x, 2)
         output_1 = self.output1(x)  # Output after the first convolutional layer
-        x = F.relu(self.conv2(x))
-        x = F.max_pool2d(x, 2)
+        x = F.sigmoid(self.conv2(x))
+        x = F.avg_pool2d(x, 2)
         output_2 = self.output2(x)  # Output after the second convolutional layer
         x = x.view(-1, 16 * 4 * 4)
         x = F.relu(self.fc1(x))
