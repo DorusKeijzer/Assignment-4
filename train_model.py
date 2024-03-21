@@ -99,7 +99,7 @@ if __name__  == "__main__":
     model_filename = argv[1]
     print(f"Loading {model_filename}...")
     model_module = load_model(model_filename)
-    model = model_module.model().to(device)
+    model = model_module.model(num_classes=10).to(device)
     print(f"Succesfully loaded model {model.name} from {model_filename}")
 
     criterion = nn.CrossEntropyLoss()
