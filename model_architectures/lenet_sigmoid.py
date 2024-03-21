@@ -23,9 +23,9 @@ class model(nn.Module):
             nn.Sigmoid(),
             nn.AvgPool2d(kernel_size=2, stride=2))
         self.fc = nn.Linear(16 * 5 * 5, 120)
-        self.relu = nn.ReLU()
+        self.relu = nn.Sigmoid()
         self.fc1 = nn.Linear(120, 84)
-        self.relu1 = nn.ReLU()
+        self.relu1 = nn.Sigmoid()
         self.fc2 = nn.Linear(84, num_classes)
 
     def forward(self, x):
