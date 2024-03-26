@@ -25,8 +25,13 @@ class model(nn.Module):
         self.fc = nn.Linear(16 * 5 * 5, 120)
         self.relu = nn.ReLU()
         self.fc1 = nn.Linear(120, 84)
-        self.relu1 = nn.ReLU()
         self.fc2 = nn.Linear(84, num_classes)
+        self.init_weights()
+
+    def init_weights(self):
+        for m in self.modules():
+            if isinstance(m, nn.Linear):
+                nn.init.kaiming_uniform_(m.weight, mode='fan_in', nonlinearity='relu')
 
     def forward(self, x):
         out = self.layer1(x)
@@ -35,6 +40,14 @@ class model(nn.Module):
         out = self.fc(out)
         out = self.relu(out)
         out = self.fc1(out)
-        out = self.relu1(out)
+        out = self.relu(out)
         out = self.fc2(out)
+        out = F.softmax(out, dim=1)
+
         return out
+
+if __name__ == "__main__":
+    from torchsummary import summary
+    model = model(10)
+    print(model.name)
+    summary(model, (1, 28, 28))

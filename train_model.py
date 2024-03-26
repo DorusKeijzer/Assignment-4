@@ -67,9 +67,13 @@ def train(net: nn.Module, train_loader, val_loader, criterion, optimizer: torch.
 
         training_loss.append(avg_train_loss)
         val_loss, val_accuracy = evaluate_model(model, criterion, val_loader)
+        T_loss, T_acc = evaluate_model(model, criterion, train_loader)
+
         eval_loss.append(val_loss)
         print("—————————————————————————————————————")
-        print(f'Validation Loss: {val_loss:>20.4f}\nValidation Accuracy: {val_accuracy:>16.4f}\n')
+        print(f'Validation Loss: {val_loss:>20.4f}\nValidation Accuracy: {val_accuracy:>16.4f}')
+        print(f'Training Loss: {T_loss:>20.4f}\nTraining Accuracy: {T_acc:>16.4f}\n')
+
     t1 = process_time()    
     print(f'Finished Training in {round((t1-t0), 1)} seconds')
     return eval_loss, training_loss, val_loss, val_accuracy 
@@ -98,9 +102,12 @@ def plotLosses(eval_loss, train_loss, final_val_loss, val_accuracy, filename, sh
 t0 = process_time()
 
 if __name__  == "__main__":
-    if len(argv) != 2:
+    if len(argv) < 2:
         raise Exception("Specify a model path")
-    
+    if len(argv) == 3:
+        reducelearningrate=bool(argv[2])
+    else:
+        reducelearningrate = False
     model_filename = argv[1]
     print(f"Loading {model_filename}...")
     model_module = load_model(model_filename)
@@ -112,7 +119,7 @@ if __name__  == "__main__":
     
     from load_dataset import train_loader, val_loader 
 
-    eval_loss, training_loss, val_accuracy, final_val_loss = train(model, train_loader, val_loader, criterion, optimizer)
+    eval_loss, training_loss, val_accuracy, final_val_loss = train(model, train_loader, val_loader, criterion, optimizer, reducelearningrate)
 
     now = datetime.now().strftime(r'%y%m%d_%H%M%S')
     store_filepath = f"trained_models/{model.name}_{now}.pth"
