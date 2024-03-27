@@ -104,10 +104,14 @@ t0 = process_time()
 if __name__  == "__main__":
     if len(argv) < 2:
         raise Exception("Specify a model path")
-    if len(argv) == 3:
+    if len(argv) >= 3:
         reducelearningrate=bool(argv[2])
     else:
         reducelearningrate = False
+    if len(argv) >=4:
+        trainval = bool(argv[3])
+    else:
+        trainval = False
     model_filename = argv[1]
     print(f"Loading {model_filename}...")
     model_module = load_model(model_filename)
@@ -117,12 +121,20 @@ if __name__  == "__main__":
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr= 0.001)
     
-    from load_dataset import train_loader, val_loader 
+    from load_dataset import train_loader, val_loader, train_val_loader
 
-    eval_loss, training_loss, val_accuracy, final_val_loss = train(model, train_loader, val_loader, criterion, optimizer, reducelearningrate)
+    if not trainval:
+        eval_loss, training_loss, val_accuracy, final_val_loss = train(model, train_loader, val_loader, criterion, optimizer, reducelearningrate)
+    else:
+        eval_loss, training_loss, val_accuracy, final_val_loss = train(model, train_val_loader, val_loader, criterion, optimizer, reducelearningrate)
 
     now = datetime.now().strftime(r'%y%m%d_%H%M%S')
-    store_filepath = f"trained_models/{model.name}_{now}.pth"
+    store_filepath = f"trained_models/{model.name}_{now}"
+    if reducelearningrate:
+        store_filepath += "_reduceLR"
+    if trainval:
+        store_filepath+= "_trainval"
+    store_filepath += ".pth"
 
     plotLosses(eval_loss, training_loss, val_accuracy, final_val_loss, f"{model.name}_{now}")
 

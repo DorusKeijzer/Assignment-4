@@ -38,3 +38,11 @@ test_dataset, val_dataset = random_split(test_dataset, [test_size, val_size])
 train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
 val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE)
 test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE)
+
+from torch.utils.data import ConcatDataset
+
+# Combine train and validation datasets
+train_val_dataset = ConcatDataset([train_dataset, val_dataset])
+
+# Create data loader for combined train and validation dataset
+train_val_loader = DataLoader(train_val_dataset, batch_size=BATCH_SIZE, shuffle=True)

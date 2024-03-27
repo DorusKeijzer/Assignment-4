@@ -1,0 +1,412 @@
+(base) PS C:\Users\dorus\Documents\assignment 4> ^C
+(base) PS C:\Users\dorus\Documents\assignment 4> python train_model.py intermediate_layers
+Loading intermediate_layers...
+Succesfully loaded model intermediate_layers from intermediate_layers
+Starting training...
+Epoch 1
+=====================================
+Batch:   0/1875, training loss: 2.3061
+Batch: 100/1875, training loss: 2.2804
+Batch: 200/1875, training loss: 2.1972
+Batch: 300/1875, training loss: 2.1491
+Batch: 400/1875, training loss: 2.1178
+Batch: 500/1875, training loss: 2.0946
+Batch: 600/1875, training loss: 2.0787
+Batch: 700/1875, training loss: 2.0605
+Batch: 800/1875, training loss: 2.0468
+Batch: 900/1875, training loss: 2.0324
+Batch: 1000/1875, training loss: 2.0198
+Batch: 1100/1875, training loss: 2.0096
+Batch: 1200/1875, training loss: 2.0001
+Batch: 1300/1875, training loss: 1.9928
+Batch: 1400/1875, training loss: 1.9855
+Batch: 1500/1875, training loss: 1.9793
+Batch: 1600/1875, training loss: 1.9723
+Batch: 1700/1875, training loss: 1.9659
+Batch: 1800/1875, training loss: 1.9595
+—————————————————————————————————————
+Validation Loss:               1.8465
+Validation Accuracy:           0.7402
+
+Training Loss:               1.8458\Training Accuracy:           0.7376
+
+Epoch 2
+=====================================
+Batch:   0/1875, training loss: 1.8279
+Batch: 100/1875, training loss: 1.8393
+Batch: 200/1875, training loss: 1.8422
+Batch: 300/1875, training loss: 1.8408
+Batch: 400/1875, training loss: 1.8392
+Batch: 500/1875, training loss: 1.8362
+Batch: 600/1875, training loss: 1.8347
+Batch: 700/1875, training loss: 1.8334
+Batch: 800/1875, training loss: 1.8322
+Batch: 900/1875, training loss: 1.8289
+Batch: 1000/1875, training loss: 1.8227
+Batch: 1100/1875, training loss: 1.8186
+Batch: 1200/1875, training loss: 1.8143
+Batch: 1300/1875, training loss: 1.8107
+Batch: 1400/1875, training loss: 1.8080
+Batch: 1500/1875, training loss: 1.8053
+Batch: 1600/1875, training loss: 1.8028
+Batch: 1700/1875, training loss: 1.8005
+Batch: 1800/1875, training loss: 1.7986
+—————————————————————————————————————
+Validation Loss:               1.7648
+Validation Accuracy:           0.7940
+
+Training Loss:               1.7573\Training Accuracy:           0.7995
+
+Epoch 3
+=====================================
+Batch:   0/1875, training loss: 1.7423
+Batch: 100/1875, training loss: 1.7513
+Batch: 200/1875, training loss: 1.7501
+Batch: 300/1875, training loss: 1.7518
+Batch: 400/1875, training loss: 1.7507
+Batch: 500/1875, training loss: 1.7521
+Batch: 600/1875, training loss: 1.7518
+Batch: 700/1875, training loss: 1.7509
+Batch: 800/1875, training loss: 1.7508
+Batch: 900/1875, training loss: 1.7509
+Batch: 1000/1875, training loss: 1.7506
+Batch: 1100/1875, training loss: 1.7510
+Batch: 1200/1875, training loss: 1.7512
+Batch: 1300/1875, training loss: 1.7502
+Batch: 1400/1875, training loss: 1.7506
+Batch: 1500/1875, training loss: 1.7504
+Batch: 1600/1875, training loss: 1.7500
+Batch: 1700/1875, training loss: 1.7500
+Batch: 1800/1875, training loss: 1.7495
+—————————————————————————————————————
+Validation Loss:               1.7494
+Validation Accuracy:           0.8130
+
+Training Loss:               1.7393\Training Accuracy:           0.8248
+
+Epoch 4
+=====================================
+Batch:   0/1875, training loss: 1.6552
+Batch: 100/1875, training loss: 1.7322
+Batch: 200/1875, training loss: 1.7434
+Batch: 300/1875, training loss: 1.7424
+Batch: 400/1875, training loss: 1.7428
+Batch: 500/1875, training loss: 1.7420
+Batch: 600/1875, training loss: 1.7433
+Batch: 700/1875, training loss: 1.7432
+Batch: 800/1875, training loss: 1.7436
+Batch: 900/1875, training loss: 1.7434
+Batch: 1000/1875, training loss: 1.7434
+Batch: 1100/1875, training loss: 1.7434
+Batch: 1200/1875, training loss: 1.7425
+Batch: 1300/1875, training loss: 1.7422
+Batch: 1400/1875, training loss: 1.7409
+Batch: 1500/1875, training loss: 1.7405
+Batch: 1600/1875, training loss: 1.7400
+Batch: 1700/1875, training loss: 1.7399
+Batch: 1800/1875, training loss: 1.7393
+—————————————————————————————————————
+Validation Loss:               1.7418
+Validation Accuracy:           0.8202
+
+Training Loss:               1.7314\Training Accuracy:           0.8292
+
+Epoch 5
+=====================================
+Batch:   0/1875, training loss: 1.6714
+Batch: 100/1875, training loss: 1.7323
+Batch: 200/1875, training loss: 1.7356
+Batch: 300/1875, training loss: 1.7334
+Batch: 400/1875, training loss: 1.7334
+Batch: 500/1875, training loss: 1.7354
+Batch: 600/1875, training loss: 1.7361
+Batch: 700/1875, training loss: 1.7369
+Batch: 800/1875, training loss: 1.7361
+Batch: 900/1875, training loss: 1.7355
+Batch: 1000/1875, training loss: 1.7346
+Batch: 1100/1875, training loss: 1.7339
+Batch: 1200/1875, training loss: 1.7331
+Batch: 1300/1875, training loss: 1.7328
+Batch: 1400/1875, training loss: 1.7323
+Batch: 1500/1875, training loss: 1.7326
+Batch: 1600/1875, training loss: 1.7325
+Batch: 1700/1875, training loss: 1.7322
+Batch: 1800/1875, training loss: 1.7318
+—————————————————————————————————————
+Validation Loss:               1.7348
+Validation Accuracy:           0.8292
+
+Training Loss:               1.7236\Training Accuracy:           0.8405
+
+Epoch 6
+=====================================
+Batch:   0/1875, training loss: 1.6482
+Batch: 100/1875, training loss: 1.7287
+Batch: 200/1875, training loss: 1.7325
+Batch: 300/1875, training loss: 1.7302
+Batch: 400/1875, training loss: 1.7300
+Batch: 500/1875, training loss: 1.7287
+Batch: 600/1875, training loss: 1.7275
+Batch: 700/1875, training loss: 1.7291
+Batch: 800/1875, training loss: 1.7282
+Batch: 900/1875, training loss: 1.7282
+Batch: 1000/1875, training loss: 1.7289
+Batch: 1100/1875, training loss: 1.7281
+Batch: 1200/1875, training loss: 1.7279
+Batch: 1300/1875, training loss: 1.7275
+Batch: 1400/1875, training loss: 1.7272
+Batch: 1500/1875, training loss: 1.7264
+Batch: 1600/1875, training loss: 1.7260
+Batch: 1700/1875, training loss: 1.7260
+Batch: 1800/1875, training loss: 1.7258
+—————————————————————————————————————
+Validation Loss:               1.7385
+Validation Accuracy:           0.8184
+
+Training Loss:               1.7283\Training Accuracy:           0.8314
+
+Epoch 7
+=====================================
+Batch:   0/1875, training loss: 1.7364
+Batch: 100/1875, training loss: 1.7309
+Batch: 200/1875, training loss: 1.7283
+Batch: 300/1875, training loss: 1.7264
+Batch: 400/1875, training loss: 1.7243
+Batch: 500/1875, training loss: 1.7228
+Batch: 600/1875, training loss: 1.7216
+Batch: 700/1875, training loss: 1.7219
+Batch: 800/1875, training loss: 1.7222
+Batch: 900/1875, training loss: 1.7215
+Batch: 1000/1875, training loss: 1.7210
+Batch: 1100/1875, training loss: 1.7209
+Batch: 1200/1875, training loss: 1.7212
+Batch: 1300/1875, training loss: 1.7217
+Batch: 1400/1875, training loss: 1.7215
+Batch: 1500/1875, training loss: 1.7213
+Batch: 1600/1875, training loss: 1.7211
+Batch: 1700/1875, training loss: 1.7211
+Batch: 1800/1875, training loss: 1.7208
+—————————————————————————————————————
+Validation Loss:               1.7376
+Validation Accuracy:           0.8332
+
+Training Loss:               1.7259\Training Accuracy:           0.8520
+
+Epoch 8
+=====================================
+Batch:   0/1875, training loss: 1.8036
+Batch: 100/1875, training loss: 1.7182
+Batch: 200/1875, training loss: 1.7197
+Batch: 300/1875, training loss: 1.7198
+Batch: 400/1875, training loss: 1.7219
+Batch: 500/1875, training loss: 1.7201
+Batch: 600/1875, training loss: 1.7217
+Batch: 700/1875, training loss: 1.7208
+Batch: 800/1875, training loss: 1.7207
+Batch: 900/1875, training loss: 1.7203
+Batch: 1000/1875, training loss: 1.7197
+Batch: 1100/1875, training loss: 1.7194
+Batch: 1200/1875, training loss: 1.7191
+Batch: 1300/1875, training loss: 1.7191
+Batch: 1400/1875, training loss: 1.7183
+Batch: 1500/1875, training loss: 1.7183
+Batch: 1600/1875, training loss: 1.7176
+Batch: 1700/1875, training loss: 1.7175
+Batch: 1800/1875, training loss: 1.7174
+—————————————————————————————————————
+Validation Loss:               1.7267
+Validation Accuracy:           0.8444
+
+Training Loss:               1.7137\Training Accuracy:           0.8604
+
+Epoch 9
+=====================================
+Batch:   0/1875, training loss: 1.7430
+Batch: 100/1875, training loss: 1.7082
+Batch: 200/1875, training loss: 1.7131
+Batch: 300/1875, training loss: 1.7141
+Batch: 400/1875, training loss: 1.7160
+Batch: 500/1875, training loss: 1.7166
+Batch: 600/1875, training loss: 1.7155
+Batch: 700/1875, training loss: 1.7143
+Batch: 800/1875, training loss: 1.7156
+Batch: 900/1875, training loss: 1.7154
+Batch: 1000/1875, training loss: 1.7143
+Batch: 1100/1875, training loss: 1.7137
+Batch: 1200/1875, training loss: 1.7138
+Batch: 1300/1875, training loss: 1.7137
+Batch: 1400/1875, training loss: 1.7137
+Batch: 1500/1875, training loss: 1.7138
+Batch: 1600/1875, training loss: 1.7140
+Batch: 1700/1875, training loss: 1.7141
+Batch: 1800/1875, training loss: 1.7135
+—————————————————————————————————————
+Validation Loss:               1.7294
+Validation Accuracy:           0.8312
+
+Training Loss:               1.7186\Training Accuracy:           0.8482
+
+Epoch 10
+=====================================
+Batch:   0/1875, training loss: 1.6847
+Batch: 100/1875, training loss: 1.7082
+Batch: 200/1875, training loss: 1.7137
+Batch: 300/1875, training loss: 1.7117
+Batch: 400/1875, training loss: 1.7114
+Batch: 500/1875, training loss: 1.7131
+Batch: 600/1875, training loss: 1.7116
+Batch: 700/1875, training loss: 1.7112
+Batch: 800/1875, training loss: 1.7113
+Batch: 900/1875, training loss: 1.7105
+Batch: 1000/1875, training loss: 1.7108
+Batch: 1100/1875, training loss: 1.7105
+Batch: 1200/1875, training loss: 1.7104
+Batch: 1300/1875, training loss: 1.7105
+Batch: 1400/1875, training loss: 1.7110
+Batch: 1500/1875, training loss: 1.7108
+Batch: 1600/1875, training loss: 1.7109
+Batch: 1700/1875, training loss: 1.7114
+Batch: 1800/1875, training loss: 1.7112
+—————————————————————————————————————
+Validation Loss:               1.7168
+Validation Accuracy:           0.8540
+
+Training Loss:               1.7050\Training Accuracy:           0.8707
+
+Epoch 11
+=====================================
+Batch:   0/1875, training loss: 1.6706
+Batch: 100/1875, training loss: 1.7012
+Batch: 200/1875, training loss: 1.7023
+Batch: 300/1875, training loss: 1.7034
+Batch: 400/1875, training loss: 1.7049
+Batch: 500/1875, training loss: 1.7047
+Batch: 600/1875, training loss: 1.7044
+Batch: 700/1875, training loss: 1.7052
+Batch: 800/1875, training loss: 1.7062
+Batch: 900/1875, training loss: 1.7053
+Batch: 1000/1875, training loss: 1.7054
+Batch: 1100/1875, training loss: 1.7062
+Batch: 1200/1875, training loss: 1.7060
+Batch: 1300/1875, training loss: 1.7061
+Batch: 1400/1875, training loss: 1.7067
+Batch: 1500/1875, training loss: 1.7070
+Batch: 1600/1875, training loss: 1.7066
+Batch: 1700/1875, training loss: 1.7067
+Batch: 1800/1875, training loss: 1.7067
+—————————————————————————————————————
+Validation Loss:               1.7156
+Validation Accuracy:           0.8562
+
+Training Loss:               1.7035\Training Accuracy:           0.8702
+
+Epoch 12
+=====================================
+Batch:   0/1875, training loss: 1.6898
+Batch: 100/1875, training loss: 1.7001
+Batch: 200/1875, training loss: 1.7027
+Batch: 300/1875, training loss: 1.7029
+Batch: 400/1875, training loss: 1.7028
+Batch: 500/1875, training loss: 1.7017
+Batch: 600/1875, training loss: 1.7018
+Batch: 700/1875, training loss: 1.7035
+Batch: 800/1875, training loss: 1.7044
+Batch: 900/1875, training loss: 1.7045
+Batch: 1000/1875, training loss: 1.7040
+Batch: 1100/1875, training loss: 1.7045
+Batch: 1200/1875, training loss: 1.7041
+Batch: 1300/1875, training loss: 1.7041
+Batch: 1400/1875, training loss: 1.7040
+Batch: 1500/1875, training loss: 1.7041
+Batch: 1600/1875, training loss: 1.7049
+Batch: 1700/1875, training loss: 1.7048
+Batch: 1800/1875, training loss: 1.7048
+—————————————————————————————————————
+Validation Loss:               1.7173
+Validation Accuracy:           0.8540
+
+Training Loss:               1.7032\Training Accuracy:           0.8740
+
+Epoch 13
+=====================================
+Batch:   0/1875, training loss: 1.7340
+Batch: 100/1875, training loss: 1.7049
+Batch: 200/1875, training loss: 1.7046
+Batch: 300/1875, training loss: 1.7063
+Batch: 400/1875, training loss: 1.7036
+Batch: 500/1875, training loss: 1.7046
+Batch: 600/1875, training loss: 1.7058
+Batch: 700/1875, training loss: 1.7055
+Batch: 800/1875, training loss: 1.7044
+Batch: 900/1875, training loss: 1.7041
+Batch: 1000/1875, training loss: 1.7041
+Batch: 1100/1875, training loss: 1.7037
+Batch: 1200/1875, training loss: 1.7040
+Batch: 1300/1875, training loss: 1.7044
+Batch: 1400/1875, training loss: 1.7049
+Batch: 1500/1875, training loss: 1.7048
+Batch: 1600/1875, training loss: 1.7044
+Batch: 1700/1875, training loss: 1.7045
+Batch: 1800/1875, training loss: 1.7040
+—————————————————————————————————————
+Validation Loss:               1.7194
+Validation Accuracy:           0.8520
+
+Training Loss:               1.7055\Training Accuracy:           0.8699
+
+Epoch 14
+=====================================
+Batch:   0/1875, training loss: 1.6332
+Batch: 100/1875, training loss: 1.7060
+Batch: 200/1875, training loss: 1.7024
+Batch: 300/1875, training loss: 1.7003
+Batch: 400/1875, training loss: 1.6999
+Batch: 500/1875, training loss: 1.6992
+Batch: 600/1875, training loss: 1.6998
+Batch: 700/1875, training loss: 1.7010
+Batch: 800/1875, training loss: 1.7014
+Batch: 900/1875, training loss: 1.7013
+Batch: 1000/1875, training loss: 1.7012
+Batch: 1100/1875, training loss: 1.7014
+Batch: 1200/1875, training loss: 1.7019
+Batch: 1300/1875, training loss: 1.7029
+Batch: 1400/1875, training loss: 1.7021
+Batch: 1500/1875, training loss: 1.7029
+Batch: 1600/1875, training loss: 1.7029
+Batch: 1700/1875, training loss: 1.7030
+Batch: 1800/1875, training loss: 1.7027
+—————————————————————————————————————
+Validation Loss:               1.7132
+Validation Accuracy:           0.8616
+
+Training Loss:               1.6989\Training Accuracy:           0.8818
+
+Epoch 15
+=====================================
+Batch:   0/1875, training loss: 1.6071
+Batch: 100/1875, training loss: 1.7012
+Batch: 200/1875, training loss: 1.7002
+Batch: 300/1875, training loss: 1.6981
+Batch: 400/1875, training loss: 1.7004
+Batch: 500/1875, training loss: 1.6996
+Batch: 600/1875, training loss: 1.6995
+Batch: 700/1875, training loss: 1.6992
+Batch: 800/1875, training loss: 1.6992
+Batch: 900/1875, training loss: 1.6985
+Batch: 1000/1875, training loss: 1.7001
+Batch: 1100/1875, training loss: 1.7008
+Batch: 1200/1875, training loss: 1.7006
+Batch: 1300/1875, training loss: 1.7008
+Batch: 1400/1875, training loss: 1.7011
+Batch: 1500/1875, training loss: 1.7012
+Batch: 1600/1875, training loss: 1.7013
+Batch: 1700/1875, training loss: 1.7014
+Batch: 1800/1875, training loss: 1.7012
+—————————————————————————————————————
+Validation Loss:               1.7182
+Validation Accuracy:           0.8596
+
+Training Loss:               1.7046\Training Accuracy:           0.8782
+
+Finished Training in 4085.3 seconds
+Saved plot to results/intermediate_layers_240326_145959.png

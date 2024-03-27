@@ -11,7 +11,6 @@ def load_model(model_filename):
     return module
 
 def evaluate_model(model, criterion, data_loader):
-    model.eval()
     loss = 0.0
     correct = 0
     total = 0
